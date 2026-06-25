@@ -34,14 +34,15 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-             - name: Azure Login
-          uses: Git-hub-reg
-          with: 7ad0f532-fd00-478b-ba5c-0d47d9e88b26
-            creds: kLM8Q~LLBUrfQbyZqKGY2GwaK1oveMGJav3kJasS
-            client-id: 9582628e-5f25-4692-9431-a531a95b0e92
-            tenant-id: b35ae60b-af62-44bb-a839-c1563125ea80
-            subscription-id: 934f0ced-05a0-41ba-8687-01cd039c4deb
-            # Set this value to true to enable Azure PowerShell Login in addition to Azure CLI login
+      # Runs a set of commands using the runners shell ti azre login    
+      - name: Azure Login
+        uses: Azure/login@v3
+        with:
+          creds: kLM8Q~LLBUrfQbyZqKGY2GwaK1oveMGJav3kJasS
+          client-id: 9582628e-5f25-4692-9431-a531a95b0e92
+          tenant-id: b35ae60b-af62-44bb-a839-c1563125ea80
+          subscription-id: 934f0ced-05a0-41ba-8687-01cd039c4deb
+          # Set this value to true to enable Azure PowerShell Login in addition to Azure CLI login
             enable-AzPSSession: # optional
             # Name of the environment. Supported values are azurecloud, azurestack, azureusgovernment, azurechinacloud, azuregermancloud. Default being azurecloud
             environment: # optional, default is azurecloud
