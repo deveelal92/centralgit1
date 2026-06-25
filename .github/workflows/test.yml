@@ -38,7 +38,7 @@ jobs:
       - name: Azure Login
         uses: Azure/login@v3
         with:
-          creds: kLM8Q~LLBUrfQbyZqKGY2GwaK1oveMGJav3kJasS
+          # creds: kLM8Q~LLBUrfQbyZqKGY2GwaK1oveMGJav3kJasS
           client-id: 9582628e-5f25-4692-9431-a531a95b0e92
           tenant-id: b35ae60b-af62-44bb-a839-c1563125ea80
           subscription-id: 934f0ced-05a0-41ba-8687-01cd039c4deb
