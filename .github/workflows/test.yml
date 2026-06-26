@@ -1,0 +1,42 @@
+name: git 
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+          
+      - name: Azure Login
+        run: az login --service-principal --username 9582628e-5f25-4692-9431-a531a95b0e92 --password D168Q~o_abZSmiQgSa_vZk.mv7XW0J_dSBfzwbax --tenant b35ae60b-af62-44bb-a839-c1563125ea80
+
+      - name: init
+        working-directory: terraform
+        run: terraform init
+      
+      - name: validate
+        working-directory: terraform
+        run: terraform validate
+
+      - name: plan
+        working-directory: terraform
+        run: terraform plan
+
+      - name: apply
+        working-directory: terraform
+        run: terraform apply -auto-approve
+
+      
