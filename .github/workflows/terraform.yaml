@@ -1,16 +1,16 @@
 name: git-hub-action
 
 on: 
-workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
 
   deploy:
-    run-on: self_hosted
+    runs-on: self_hosted
 
     defaults:
       run:
-        working_dispatch: terraform
+          working-directory: terraform
 
     steps:
 
