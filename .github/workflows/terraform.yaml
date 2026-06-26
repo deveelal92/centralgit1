@@ -1,0 +1,33 @@
+name: git-hub-action
+
+on: 
+workflow_dispatch:
+
+jobs:
+
+  deploy:
+    run-on: self_hosted
+
+    defaults:
+      run:
+        working_dispatch: terraform
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - name: Azure Login
+        run: az login --service-principal --username 9582628e-5f25-4692-9431-a531a95b0e92 --password D168Q~o_abZSmiQgSa_vZk.mv7XW0J_dSBfzwbax --tenant b35ae60b-af62-44bb-a839-c1563125ea80
+
+      - name: init
+        run: terraform init
+      
+      - name: validate
+        run: terraform validate
+
+      - name: plan
+        run: terraform plan
+
+      - name: apply
+        run: terraform apply -auto-approve
+
