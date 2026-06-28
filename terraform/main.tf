@@ -1,4 +1,4 @@
-resource "azurerm_resource_group" "rg" {
-  name = "github-rg1"
+resource "azurerm_resource_group" "rg123" {
+  name = "github-rg21"
   location = "central india"
   }
