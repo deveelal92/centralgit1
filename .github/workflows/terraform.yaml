@@ -1,7 +1,10 @@
 name: git-hub-action
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - master
+  # workflow_dispatch:
 
 jobs:
   security:
