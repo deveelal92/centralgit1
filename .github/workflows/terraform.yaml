@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-  # workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   security:
@@ -20,6 +20,8 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.5
 
       - name: Terraform Format
         run: terraform fmt -check -recursive
@@ -29,6 +31,18 @@ jobs:
 
       - name: Terraform Validate
         run: terraform validate
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v4
+
+      - name: TFLint Version
+        run: tflint --version
+
+      - name: TFLint Init
+        run: tflint --init
+
+      - name: Run TFLint
+        run: tflint  
 
   deploy:
     needs: security
@@ -47,21 +61,14 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.5
 
       - name: Terraform Init
         run: terraform init
 
       - name: Terraform Validate
         run: terraform validate
-
-      - name: Check TFLint
-        run: tflint --version
-
-      - name: TFLint Init
-        run: tflint --init
-
-      - name: Run TFLint
-        run: tflint
 
       - name: Terraform Plan
         run: terraform plan -out=tfplan
